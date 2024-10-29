@@ -18,20 +18,33 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Deploy to GitHub Pages
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Production Site
+        if: github.ref == 'refs/heads/main'
+        run: |
+          npm run build # Adjust this if your build command is different
+
+      - name: Deploy Production to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build  # or wherever your build files output
-          destination_branch: main
+          publish_dir: ./build
+          publish_branch: gh-pages
           cname: "devvyy.xyz"
 
-      - name: Deploy Dev Version to GitHub Pages
+      - name: Build Dev Site
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          npm run build # Adjust this if your build command is different
+
+      - name: Deploy Dev to GitHub Pages
         if: github.ref == 'refs/heads/dev'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          destination_branch: dev
+          publish_branch: gh-pages-dev
           cname: "dev.devvyy.xyz"
