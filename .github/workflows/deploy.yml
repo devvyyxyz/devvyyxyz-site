@@ -24,8 +24,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build  # or wherever your build files output
-          destination_branch: gh-pages
-          cname: "devvy.xyz"
+          destination_branch: main
+          cname: "devvyy.xyz"
 
       - name: Deploy Dev Version to GitHub Pages
         if: github.ref == 'refs/heads/dev'
@@ -33,5 +33,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          destination_branch: gh-pages-dev
-          cname: "dev.devvy.xyz"
+          destination_branch: dev
+          cname: "dev.devvyy.xyz"
