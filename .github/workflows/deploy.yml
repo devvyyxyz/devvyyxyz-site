@@ -27,11 +27,6 @@ jobs:
           publish_branch: gh-pages
           cname: "devvyy.xyz"
 
-      - name: Build Dev Site
-        if: github.ref == 'refs/heads/dev'
-        run: |
-          npm run build # Adjust this if your build command is different
-
       - name: Deploy Dev to GitHub Pages
         if: github.ref == 'refs/heads/dev'
         uses: peaceiris/actions-gh-pages@v3
