@@ -18,11 +18,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Build Production Site
-        if: github.ref == 'refs/heads/main'
-        run: |
-          npm run build # Adjust this if your build command is different
-
       - name: Deploy Production to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
